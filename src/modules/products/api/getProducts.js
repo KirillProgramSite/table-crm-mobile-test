@@ -1,12 +1,11 @@
 import axios from "axios"
 
 
-export const getProducts = async (token, search = "") => {
+export const getProducts = async (token) => {
     const res = await axios.get("https://app.tablecrm.com/api/v1/nomenclature/", {
         params: {
             token: token,
             limit: 100,
-            search: search,
             with_prices: true,
         }
     })

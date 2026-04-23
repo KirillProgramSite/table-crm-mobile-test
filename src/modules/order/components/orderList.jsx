@@ -8,14 +8,10 @@ import {
     SelectLabel,
 } from "@/components/ui/select"
 import { useOrderStore } from "@/store/useOrderStore"
-import { useEffect } from "react"
+
 
 const OrderList = () => {
     const order = useOrderStore((state) => state.order)
-
-    useEffect(() => {
-        console.log(order?.organizations?.map((org) => org.id));
-    }, [order])
 
     return (
         <div>

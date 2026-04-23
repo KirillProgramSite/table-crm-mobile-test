@@ -1,8 +1,11 @@
 import { Badge } from "@/components/ui/badge"
+import CartList from "@/modules/cart/components/cartList"
 import ClientForm from "@/modules/client/components/clientForm"
 import OrderList from "@/modules/order"
 import ProductsList from "@/modules/products/components/productsList"
+import SearchProduct from "@/modules/products/components/searchProduct"
 import TokenForm from "@/modules/token"
+import useCartStore from "@/store/useCartStore"
 import { useClientStore } from "@/store/useClientStore"
 import { useOrderStore } from "@/store/useOrderStore"
 import { useProductsStore } from "@/store/useProductsStore"
@@ -12,17 +15,6 @@ import { useEffect } from "react"
 
 const App = () => {
   const token = useTokenStore((state) => state.token)
-  const client = useClientStore((state) => state.client)
-  const order = useOrderStore((state) => state.order)
-  const products = useProductsStore((state) => state.products)
-
-  useEffect(() => {
-    console.log(products);
-  }, [products])
-
-  // useEffect(() => {
-  //   console.log(order);
-  // }, [order])
 
   return (
     <div className="min-h-screen flex flex-col px-5">
@@ -42,7 +34,9 @@ const App = () => {
 
       <OrderList />
 
-      <ProductsList />
+      <SearchProduct token={token} />
+      <ProductsList token={token} />
+      <CartList />
     </div>
   )
 }

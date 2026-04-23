@@ -1,9 +1,13 @@
+import { Button } from "@/components/ui/button"
+import useCartStore from "@/store/useCartStore"
 import { ShoppingBasketAdd01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
 
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, token }) => {
+    const {addToCart} = useCartStore()
+
     return (
         <div className="border rounded-lg p-4 flex items-center justify-between mb-2">
             <div className="">
@@ -14,9 +18,9 @@ const ProductCard = ({ product }) => {
                         : 'Нет цены'}
                 </p>
             </div>
-            <div className="">
+            <Button onClick={() => addToCart(token, product.id)} className="bg-blue-500 text-white hover:bg-blue-600">
                 <HugeiconsIcon icon={ShoppingBasketAdd01Icon} />
-            </div>
+            </Button>
         </div>
     )
 }
